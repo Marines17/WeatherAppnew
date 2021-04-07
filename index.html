@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/4f9c1d9cf3.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="src/style.css" />
+    <title>Weather App</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>
+        <div class="row">
+          <div class="col-6">
+            <strong id="city">Bordeaux </strong><br />
+            <span class="time">17:00 </span><br />
+            <span class="today">Sunday </span><br />
+          </div>
+          <div class="col-6 right-text">
+            <span class="bdxicon">
+              <i class="fas fa-sun"></i>
+            </span>
+            <span class="bdxtemp">
+              <span id="temperature">23</span
+              ><span class="celcius" id="convertCelcius"
+                ><a href="#">°C</a></span
+              ><span class="fahrenheit" id="convertFahrenheit"
+                ><a href="#">/°F</a></span
+              > </span
+            ><br />
+            <ul>
+              <li class="feelsLike" id="feelsLike">Feels like 9℃</li>
+              <br />
+              <li class="humidity" id="humidity">Humidity: 40%</li>
+              <br />
+              <li class="wind" id="wind">Wind: 8km/h</li>
+            </ul>
+          </div>
+        </div>
+      </h1>
+
+      <section>
+        <div class="row">
+          <div class="col">
+            Mon 3
+            <br />
+            <i class="fas fa-cloud-sun"></i>
+            <div class="temp">
+              19
+              <span class="celcius">°C</span>
+              - 20
+              <span class="celcius">°C</span>
+            </div>
+          </div>
+          <br />
+
+          <div class="col">
+            Tue 4
+            <br />
+            <i class="fas fa-cloud-sun"></i>
+            <div class="temp">
+              17
+              <span class="celcius">°C</span>
+              - 21
+              <span class="celcius">°C</span>
+            </div>
+          </div>
+          <br />
+
+          <div class="col">
+            Wed 5
+            <br />
+            <i class="fas fa-sun"></i>
+            <div class="temp">
+              19
+              <span class="celcius">°C</span>
+              - 21
+              <span class="celcius">°C</span>
+            </div>
+          </div>
+
+          <div class="col">
+            Thu 6
+            <br />
+            <i class="fas fa-cloud"></i>
+            <div class="temp">
+              10
+              <span class="celcius">°C</span>
+              - 22
+              <span class="celcius">°C</span>
+            </div>
+          </div>
+
+          <div class="col">
+            Fri 7
+            <br />
+            <i class="fas fa-sun"></i>
+            <div class="temp">
+              20
+              <span class="celcius">°C</span>
+              - 23
+              <span class="celcius">°C</span>
+            </div>
+          </div>
+        </div>
+        <br />
+      </section>
+
+      <footer>
+        <form id="search-form">
+          <input
+            type="search"
+            placeholder="Search for a city"
+            autocomplete="off"
+            id="search-text-input"
+            class="searchForm"
+          />
+          <input class="search-form" type="submit" value="☀️" />
+          <input class="submitPin" type="submit" value="📍" />
+        </form>
+      </footer>
+    </div>
+    <p class="myName">Coded by Marine Simon</p>
+
+    <script src="src/data.js"></script>
+  </body>
+</html>
