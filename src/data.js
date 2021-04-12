@@ -35,7 +35,6 @@ function convertToFahrenheit(event) {
 }
 
 function displayWeatherCondition(response) {
-  console.log(response);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#feelsLike").innerHTML = `Feels like : ${Math.round(
     response.data.main.feels_like
@@ -49,6 +48,12 @@ function displayWeatherCondition(response) {
   document.querySelector("#wind").innerHTML = `Wind : ${Math.round(
     response.data.wind.speed
   )} km/h`;
+  let iconElement = document.querySelector("#titleIcon");
+  console.log(response);
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function searchCity(city) {
@@ -61,6 +66,17 @@ function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search-text-input").value;
   searchCity(city);
+}
+
+function showPosition(position) {
+  let apiKey = "66e48331c74ac5541e45dafb42039ad5";
+  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showPosition);
 }
 
 let day = days[now.getDay()];
@@ -76,19 +92,7 @@ fahrenheitLink.addEventListener("click", convertToFahrenheit);
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-searchCity("Bordeaux");
-
-//bonus
-function showPosition(position) {
-  let apiKey = "66e48331c74ac5541e45dafb42039ad5";
-  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherCondition);
-}
-
-function getCurrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(showPosition);
-}
-
 let pinButton = document.querySelector(".submitPin");
 pinButton.addEventListener("click", getCurrentLocation);
+
+searchCity("Bordeaux");
