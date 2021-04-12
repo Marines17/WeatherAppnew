@@ -20,27 +20,14 @@ let days = [
   "Saturday",
 ];
 
-function convertToCelcius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  temperatureElement.innerHTML = Math.round((temperature - 32) / 1.8);
-}
-
-function convertToFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
-}
-
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#feelsLike").innerHTML = `Feels like : ${Math.round(
     response.data.main.feels_like
   )} ℃`;
+  celciusTemperature = response.data.main.temp;
   document.querySelector("#temperature").innerHTML = Math.round(
-    response.data.main.temp
+    celciusTemperature
   );
   document.querySelector(
     "#humidity"
@@ -79,15 +66,30 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
 
+function convertToFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let temperature = (celciusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(temperature);
+}
+
+function convertToCelcius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celciusTemperature);
+}
+
+let celciusTemperature = null;
+
 let day = days[now.getDay()];
 today.innerHTML = `${day} ${date}`;
 time.innerHTML = `${hours}:${minutes}`;
 
-let celsiusLink = document.querySelector("#convertCelcius");
-celsiusLink.addEventListener("click", convertToCelcius);
-
 let fahrenheitLink = document.querySelector("#convertFahrenheit");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+let celciusLink = document.querySelector("#convertCelcius");
+celciusLink.addEventListener("click", convertToCelcius);
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
