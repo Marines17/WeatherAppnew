@@ -113,9 +113,13 @@ footer {
 .searchForm,
 .search-form,
 .submitPin {
-  background-color: #e6d8ce00;
+  background-color: #ffffffec;
   border-color: rgba(59, 136, 29, 0.3);
   border-radius: 5px 5px 5px;
+}
+.search-form,
+.submitPin {
+  background-color: rgb(193, 223, 196);
 }
 .myName {
   text-align: center;
