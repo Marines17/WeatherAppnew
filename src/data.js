@@ -1,3 +1,27 @@
+let now = new Date();
+let today = document.querySelector(".today");
+let time = document.querySelector(".time");
+let hours = now.getHours();
+if (hours < 10) {
+  hours = `0${hours}`;
+}
+let minutes = now.getMinutes();
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+let day = days[now.getDay()];
+today.innerHTML = `${day}`;
+time.innerHTML = `${hours}:${minutes}`;
+
 function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
   let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
@@ -21,7 +45,11 @@ function displayForecast() {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
+}
+function getForecast(coordinates) {
+  let apiKey = "66e48331c74ac5541e45dafb42039ad5";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayWeatherCondition(response) {
@@ -40,11 +68,11 @@ function displayWeatherCondition(response) {
     response.data.wind.speed
   )} km/h`;
   let iconElement = document.querySelector("#titleIcon");
-  console.log(response);
   iconElement.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -83,30 +111,6 @@ function convertToCelcius(event) {
   temperatureElement.innerHTML = Math.round(celciusTemperature);
 }
 
-let now = new Date();
-let today = document.querySelector(".today");
-let time = document.querySelector(".time");
-let hours = now.getHours();
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let day = days[now.getDay()];
-today.innerHTML = `${day}`;
-time.innerHTML = `${hours}:${minutes}`;
-
 let fahrenheitLink = document.querySelector("#convertFahrenheit");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
 
@@ -122,4 +126,3 @@ pinButton.addEventListener("click", getCurrentLocation);
 let celciusTemperature = null;
 
 searchCity("Bordeaux");
-displayForecast();
