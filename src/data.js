@@ -1,3 +1,32 @@
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+       <div class="col">
+            ${day}
+            <br />
+            <i class="fas fa-cloud-sun"></i>
+            <div class="temp">
+              19
+              <span class="celcius">°C</span>
+              - 20
+              <span class="celcius">°C</span>
+            </div>
+          </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#feelsLike").innerHTML = `Feels like : ${Math.round(
@@ -97,3 +126,4 @@ let pinButton = document.querySelector(".submitPin");
 pinButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Bordeaux");
+displayForecast();
