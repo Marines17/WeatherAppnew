@@ -41,7 +41,7 @@ function displayForecast(response) {
         `
           <div class="col">
             ${formatDay(forecastDay.dt)} </br>
-            <img class="forecastImg" src="http://openweathermap.org/img/wn/${
+            <img class="forecastImg" src="https://openweathermap.org/img/wn/${
               forecastDay.weather[0].icon
             }@2x.png" width=70px>
             <div class="temp" id="temperature">
@@ -82,7 +82,7 @@ function displayWeatherCondition(response) {
   let iconElement = document.querySelector("#titleIcon");
   iconElement.setAttribute(
     "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   getForecast(response.data.coord);
 }
@@ -101,7 +101,7 @@ function handleSubmit(event) {
 
 function showPosition(position) {
   let apiKey = "66e48331c74ac5541e45dafb42039ad5";
-  let apiUrl = `http://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
