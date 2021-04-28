@@ -81,6 +81,7 @@ footer {
 .bdxicon {
   font-size: 70px;
   color: rgb(243, 187, 3);
+  position: relative;
 }
 .row {
   padding: 20px 0;
@@ -88,7 +89,7 @@ footer {
 .col {
   text-align: center;
   padding: 10px;
-  line-height: 2;
+  line-height: 0.7;
   font-size: 18px;
   color: #346946;
   box-shadow: 4px 4px 5px #90b89f;
@@ -97,9 +98,7 @@ footer {
 .right-text {
   text-align: right;
 }
-.fas {
-  color: rgb(243, 187, 3);
-}
+
 .temp {
   text-align: center;
   font-size: 20px;
@@ -110,6 +109,7 @@ footer {
   font-size: 10px;
   top: -7px;
 }
+
 .searchForm,
 .search-form,
 .submitPin {
