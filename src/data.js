@@ -1,8 +1,6 @@
 function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
-
   let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-
   let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
     forecastHTML =
@@ -21,7 +19,6 @@ function displayForecast() {
           </div>
   `;
   });
-
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
   console.log(forecastHTML);
@@ -86,12 +83,9 @@ function convertToCelcius(event) {
   temperatureElement.innerHTML = Math.round(celciusTemperature);
 }
 
-let celciusTemperature = null;
-
 let now = new Date();
 let today = document.querySelector(".today");
 let time = document.querySelector(".time");
-let date = now.getDate();
 let hours = now.getHours();
 if (hours < 10) {
   hours = `0${hours}`;
@@ -110,7 +104,7 @@ let days = [
   "Saturday",
 ];
 let day = days[now.getDay()];
-today.innerHTML = `${day} ${date}`;
+today.innerHTML = `${day}`;
 time.innerHTML = `${hours}:${minutes}`;
 
 let fahrenheitLink = document.querySelector("#convertFahrenheit");
@@ -124,6 +118,8 @@ searchForm.addEventListener("submit", handleSubmit);
 
 let pinButton = document.querySelector(".submitPin");
 pinButton.addEventListener("click", getCurrentLocation);
+
+let celciusTemperature = null;
 
 searchCity("Bordeaux");
 displayForecast();
